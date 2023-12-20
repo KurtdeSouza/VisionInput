@@ -1,4 +1,6 @@
 import cv2
+import pyautogui
+import time
 face_cascade = cv2.CascadeClassifier('./data\haarcascades\haarcascade_frontalface_default.xml')
 eye_cascade = cv2.CascadeClassifier('./data\haarcascades\haarcascade_eye.xml')
 smile_cascade = cv2.CascadeClassifier('./data\haarcascades\haarcascade_smile.xml')
@@ -11,10 +13,12 @@ def detect(gray, frame):
         roi_gray = gray[y:y + h, x:x + w]
         roi_color = frame[y:y + h, x:x + w]
         smiles = smile_cascade.detectMultiScale(roi_gray, 1.8, 20)
-        red=  (0, 0, 255)
+        red=(0, 0, 255)
         for (sx, sy, sw, sh) in smiles:
             im = cv2.rectangle(roi_color, (sx, sy), ((sx + sw), (sy + sh)), red, 2)
             cv2.putText(im, 'me when I see my gf', (sx, sy - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.4,red, 1)
+            pyautogui.press('space')
+            time.sleep(0.2)
     return frame
 cap = cv2.VideoCapture(0)
 

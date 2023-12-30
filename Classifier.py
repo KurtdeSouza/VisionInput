@@ -9,17 +9,18 @@ from keras.applications.resnet50 import ResNet50
 from PIL import Image
 import os
 import numpy as np
-train_x  = []
-train_y = []
+training_img  = []
+solution = []
 for path in os.listdir('training_data/Ground'):
     img = Image.open('./training_data/Ground/' + path)
-    train_x.append(np.array(img))
-    train_y.append(0)
+    training_img.append(np.array(img))
+    solution.append(0)
     img.close()
 for path in os.listdir('training_data/Air'):
     img = Image.open('./training_data/Air/' + path)
-    train_x.append(np.array(img))
-    train_y.append(1)
+    training_img.append(np.array(img))
+    solution.append(1)
     img.close()
+#add paths for ground and air training sets with solutions as 1/0 (air/ground)
 warnings.filterwarnings('ignore')
 

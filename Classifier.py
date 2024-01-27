@@ -45,5 +45,4 @@ with strat.scope():
     model.compile(loss='binary_crossentropy', optimizer=opt,metrix=['accuracy'])
     train_data = tf.data.Dataset.from_tensor_slices((training_imgs,labels))
     train_data = train_data.cache().shuffle(10000).batch(BATCH_SIZE)
-    model.fit(train_data, epochs=100)
-    model.save('jump_class_weights.h5')
+    model.fit(train_data, epochs=30)
